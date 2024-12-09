@@ -1,0 +1,17 @@
+[build]
+  command = "pip install -r requirements.txt && python build.py"
+  functions = "netlify/functions"
+  publish = "public"
+
+[dev]
+  framework = "#custom"
+  command = "python -m http.server 8888"
+  targetPort = 8888
+  port = 8888
+  publish = "public"
+  autoLaunch = true
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
